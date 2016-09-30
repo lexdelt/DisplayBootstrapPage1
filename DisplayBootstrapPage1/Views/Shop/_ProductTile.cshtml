@@ -1,0 +1,65 @@
+﻿@model DisplayBootstrapPage1.Models.Product
+
+<div class="col-sm-4 col-lg-4 col-md-4">
+
+    <div class="thumbnail">
+
+        <img src="@Model.PictureLinkSmall" alt="" width="143">
+
+        <div class="caption">
+            <h4 class="pull-right">@Model.Price kr</h4>
+            <h4>
+                @Html.ActionLink((@Model.Manufacturer + " " + @Model.Name), "ShowProduct", "Shop", new { Product_ID = @Model.ID }, null)
+            </h4>
+            <p>@Model.SubName</p>
+        </div>
+        <div class="ratings">
+
+            <p class="pull-right">@Model.NumberReviews reviews</p>
+
+            <p>
+                @if (@Model.AverageReview == "1")
+                {
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                }
+                else if (@Model.AverageReview == "2")
+                {
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                }
+                else if (@Model.AverageReview == "3")
+                {
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                }
+                else if (@Model.AverageReview == "4")
+                {
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                }
+                else
+                {
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                }
+            </p>
+
+        </div>
+    </div>
+</div>

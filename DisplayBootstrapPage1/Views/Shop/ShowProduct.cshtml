@@ -1,0 +1,179 @@
+﻿@model DisplayBootstrapPage1.Models.Product
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-3">
+            @*<p class="lead">Shop Name</p>*@
+            <br />
+
+            @Html.Action("ProductFilterPartial", "Shop")
+
+        </div>
+
+        <div class="col-md-9">
+
+            <br />
+
+            <div class="thumbnail">
+
+                @*"800x300"*@
+                <img class="img-responsive" src="@Model.PictureLinkLarge" alt="" width="405">
+
+                <div class="caption-full">
+
+                    <h4 class="pull-right">@Model.Price kr</h4>
+
+                    <h4>
+                        <a href="#">@Model.Manufacturer @Model.Name</a>
+
+                    </h4>
+
+                    <p>@Model.SubName</p>
+
+
+                    <p>Inventory: @Model.InStock</p>
+
+                    <p>@Model.Description</p>
+                    <br />
+                    <p>@Html.Raw(Model.Description2)</p>
+
+                    @*<div class="text-right">
+                                 <input type="email" class="form-control" id="exampleInputEmail1" value="3">
+                                 <a class="btn btn-success">Add to cart</a>
+                        </div>*@
+
+                    @using (Html.BeginForm("ShoppingCart", "Shop")) //, FormMethod.Post))
+                    {
+                        <div>
+                            @Html.Label(expression: "Quantity", labelText: "Quantity:")
+                            @Html.TextBox("Quantity", null, new { @class = "form-control" })
+
+                            @*<input type="hidden" name="item_id" value="@Model.ID">*@
+                            <input type="hidden" name="Product_ID" value="@Model.ID">
+                        </div>
+                        <br />
+                        <input type="submit" value="Add to cart" class="btn btn-success" />
+                    }
+                    <br />
+
+                    <div class="ratings">
+                        <p class="pull-right">@Model.NumberReviews reviews</p>
+                        <p>
+                            @if (@Model.AverageReview == "1")
+                            {
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                            }
+                            else if (@Model.AverageReview == "2")
+                            {
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                            }
+                            else if (@Model.AverageReview == "3")
+                            {
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                            }
+                            else if (@Model.AverageReview == "4")
+                            {
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                            }
+                            else
+                            {
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                            }
+                            @Model.AverageReview stars
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="well">
+
+                <div class="text-right">
+                    <a href=@Url.Action("CreateReview", "Shop", new{Product_ID = @Model.ID}) class="btn btn-default">Leave a Review</a>
+                </div>
+
+                @foreach (var item in @Model.Reviews)
+                {
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-12">
+                            @if (@item.Grade == "1")
+                            {
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                            }
+                            else if (@item.Grade == "2")
+                            {
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                            }
+                            else if (@item.Grade == "3")
+                            {
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                            }
+                            else if (@item.Grade == "4")
+                            {
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                            }
+                            else
+                            {
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                            }
+
+                            @item.UserName
+                            <span class="pull-right">@item.PublishDate.ToString("MM/dd/yyyy")</span>
+                            <p>@item.Text</p>
+                        </div>
+                    </div>
+
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,60 @@
+﻿@*PM> Install-Package Microsoft.jQuery.Unobtrusive.Ajax*@
+@*Replace will replace the content with the new content. ReplaceWith will replace the entire element.*@
+
+<div class="list-group">
+    @Ajax.ActionLink(
+            linkText: "Categories",
+            actionName: "IndexAjax",
+            controllerName: "Shop",
+            ajaxOptions: new AjaxOptions
+            {
+                UpdateTargetId = "ajax-product-table",
+                InsertionMode = InsertionMode.Replace
+            },
+            routeValues: new { cat = "all" },
+            htmlAttributes: new { @class = "list-group-item active" })
+
+    @foreach (var item in ViewData["Categories"] as List<string>)
+    {
+        @Ajax.ActionLink(
+                linkText: @item,
+                actionName: "IndexAjax",
+                controllerName: "Shop",
+                ajaxOptions: new AjaxOptions
+                {
+                    UpdateTargetId = "ajax-product-table",
+                    InsertionMode = InsertionMode.Replace
+                },
+                routeValues: new { cat = item },
+                htmlAttributes: new { @class = "list-group-item" })
+    }
+</div>
+
+<div class="list-group">
+    @Ajax.ActionLink(
+            linkText: "Brands",
+            actionName: "IndexAjax",
+            controllerName: "Shop",
+            ajaxOptions: new AjaxOptions
+            {
+                UpdateTargetId = "ajax-product-table",
+                InsertionMode = InsertionMode.Replace,
+            },
+            routeValues: new { brand = "all" },
+            htmlAttributes: new { @class = "list-group-item active" })
+
+    @foreach (var item in ViewData["Brands"] as List<string>)
+    {
+        @Ajax.ActionLink(
+                linkText: @item,
+                actionName: "IndexAjax",
+                controllerName: "Shop",
+                ajaxOptions: new AjaxOptions
+                {
+                    UpdateTargetId = "ajax-product-table",
+                    InsertionMode = InsertionMode.Replace,
+                },
+                routeValues: new { brand = item },
+                htmlAttributes: new { @class = "list-group-item" })
+    }
+</div>

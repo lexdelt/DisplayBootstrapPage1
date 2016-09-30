@@ -1,0 +1,15 @@
+﻿<div class="list-group">
+    <a href=@Url.Action("Index", "Shop", new { cat = "all" }) class="list-group-item active">Categories</a>
+    @foreach (var item in ViewData["Categories"] as List<string>)
+    {
+        <a href=@Url.Action("Index", "Shop", new{cat = item}) class="list-group-item">@item</a>
+    }
+</div>
+
+<div class="list-group">
+    <a href=@Url.Action("Index", "Shop", new { brand = "all" }) class="list-group-item active">Brands</a>
+    @foreach (var item in ViewData["Brands"] as List<string>)
+    {
+        <a href=@Url.Action("Index" , "Shop" , new{brand=item}) class="list-group-item">@item</a>
+    }
+</div>
